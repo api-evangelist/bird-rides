@@ -1,0 +1,90 @@
+aid: bird-rides
+name: Bird Vocabulary
+description: >-
+  Operational vocabulary for Bird's public GBFS feed and surrounding
+  micromobility surface. Organizes the recurring concepts that appear in
+  Bird's system_information, vehicle_types, free_bike_status, geofencing,
+  and pricing feeds, plus the higher-level commercial surfaces (Platform,
+  Cities, Fleet Manager, Operator Partner).
+version: '0.1'
+created: '2026-05-25'
+modified: '2026-05-25'
+concepts:
+  - id: System
+    name: System
+    description: A single Bird city deployment identified by a `system_id` such as `bird-los-angeles`.
+    references:
+      - https://github.com/MobilityData/gbfs/blob/master/gbfs.md#system_informationjson
+  - id: Vehicle
+    name: Vehicle
+    description: A single free-floating Bird scooter or bicycle reported in `free_bike_status.json` with a rotating `bike_id`.
+  - id: Scooter
+    name: Scooter
+    description: An electric standing scooter (form_factor=scooter, propulsion_type=electric). The flagship Bird Three is the current generation.
+  - id: Bicycle
+    name: Bicycle
+    description: An electric-assist pedal bicycle (form_factor=bicycle, propulsion_type=electric_assist) served by Bird Bikeshare with ~60 km nominal range.
+  - id: VehicleType
+    name: Vehicle Type
+    description: A typed catalog entry in `vehicle_types.json` referenced by every vehicle via `vehicle_type_id`.
+  - id: GeofencingZone
+    name: Geofencing Zone
+    description: A GeoJSON polygon in `geofencing_zones.json` describing no-ride, no-parking, ride-through, or speed-cap rules.
+  - id: NoParkZone
+    name: No-Park Zone
+    description: A geofence where parking and trip-end are not permitted.
+  - id: NoRideZone
+    name: No-Ride Zone
+    description: A geofence where the vehicle motor is disabled.
+  - id: SpeedCapZone
+    name: Speed-Cap Zone
+    description: A geofence where the maximum speed is reduced (e.g. pedestrian areas).
+  - id: SystemRegion
+    name: System Region
+    description: A named subdivision of a system service area as listed in `system_regions.json`.
+  - id: PricingPlan
+    name: Pricing Plan
+    description: A rider-facing plan record from `system_pricing_plans.json` describing currency and base price.
+  - id: CommunityPricing
+    name: Community Pricing
+    description: Bird's 50%-off equity program for qualifying low-income riders.
+  - id: CommunityMode
+    name: Community Mode
+    description: In-app feature for non-riders to report improperly parked vehicles or hazards.
+  - id: CityDataPortal
+    name: City Data Portal
+    description: Credentialed municipal data surface at city-data.bird.co for partner cities, trip and operational data.
+  - id: FleetOperator
+    name: Fleet Operator
+    description: An independent operator running a Bird-branded service via the Bird Platform program.
+  - id: BirdPlatform
+    name: Bird Platform
+    description: White-label fleet program providing vehicles at cost, hosted dashboard, GovTech compliance tools, and revenue-share per ride.
+services:
+  - id: GBFSFeed
+    name: GBFS Feed
+    description: Public GBFS v2.3 auto-discovery service at mds.bird.co/gbfs/v2/public/{city}.
+  - id: CityDataAPI
+    name: City Data API
+    description: Credentialed municipal data API behind city-data.bird.co.
+  - id: MobileAppBackend
+    name: Mobile App Backend
+    description: Undocumented consumer mobile-app API at api.birdapp.com.
+standards:
+  - id: GBFS
+    name: General Bikeshare Feed Specification
+    version: '2.3'
+    url: https://github.com/MobilityData/gbfs
+  - id: MDS
+    name: Mobility Data Specification
+    url: https://www.openmobilityfoundation.org/about-mds/
+    description: Referenced by Bird's cities partnership tooling; not exposed as a public Bird endpoint.
+  - id: GeoJSON
+    name: GeoJSON
+    url: https://datatracker.ietf.org/doc/html/rfc7946
+tags:
+  - Micromobility
+  - Shared Mobility
+  - GBFS
+  - Geofencing
+  - Smart Cities

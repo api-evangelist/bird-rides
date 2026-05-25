@@ -1,0 +1,61 @@
+aid: bird-rides
+name: Bird Pricing & Plans
+specification: API Commons Plans 0.1
+description: >-
+  Bird does not publish a single global price sheet — rider pricing varies
+  per-market and is set in the consumer app via the Bird Platform operator
+  tools. The GBFS `system_pricing_plans.json` feed exists at every city
+  endpoint but is returned empty in most observed markets. This file
+  documents the commercial surfaces (rider, fleet operator, city partner)
+  rather than per-ride rates.
+modified: '2026-05-25'
+plans:
+  - id: rider-payg
+    name: Pay-as-You-Go Rides
+    audience: Consumer Rider
+    description: >-
+      Standard per-trip pricing: unlock fee plus per-minute charge, varying
+      by city and vehicle type. Set in-app on a per-market basis by the
+      local Bird operator.
+    pricing:
+      model: per-ride
+      currency: multi-currency
+      reference: https://www.bird.co/how
+  - id: rider-community-pricing
+    name: Bird Community Pricing
+    audience: Income-Qualified Rider
+    description: 50% discount program for low-income riders who qualify with public-assistance documentation.
+    pricing:
+      model: discount
+      reference: https://www.bird.co/community-pricing
+  - id: platform-fleet-operator
+    name: Bird Platform — Fleet Operator
+    audience: Independent Fleet Operator
+    description: >-
+      White-label operator program. Independent operators buy Bird vehicles
+      at cost (50-unit minimum), use Bird's consumer app and dashboard, and
+      Bird charges a revenue-share service fee per ride.
+    pricing:
+      model: revenue-share
+      vehicles: at-cost; minimum 50
+      fleetSizingGuidance:
+        '10000-50000 residents': 50-100 vehicles
+        '50000-100000 residents': 100-250 vehicles
+        '100000-250000 residents': 250-500 vehicles
+        '250000+ residents': 1000+ vehicles
+      reference: https://www.bird.co/platform
+  - id: cities-partnership
+    name: Cities Partner Program
+    audience: Municipality
+    description: >-
+      Custom partnership for cities with operator-side pricing, custom
+      dashboards, and in-depth data APIs. Terms are negotiated per
+      municipality.
+    pricing:
+      model: negotiated
+      reference: https://www.bird.co/cities
+sources:
+  - https://www.bird.co/how
+  - https://www.bird.co/platform
+  - https://www.bird.co/cities
+  - https://mds.bird.co/gbfs/v2/public/los-angeles/system_pricing_plans.json

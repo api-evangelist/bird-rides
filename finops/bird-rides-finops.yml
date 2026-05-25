@@ -1,0 +1,49 @@
+aid: bird-rides
+name: Bird FinOps Profile
+specification: FinOps Framework / FOCUS data spec (alignment)
+description: >-
+  Bird does not expose a metered API billing surface, so there is no
+  consumer-facing FinOps integration. The public GBFS feeds are free under
+  Bird's GBFS Data License Agreement. The municipal city-data portal is
+  governed by per-city partnership contracts. The Bird Platform program
+  charges a revenue-share service fee per ride to fleet operators — this is
+  the only billable Bird surface but it is not metered via API. This file
+  documents the cost / revenue surfaces for completeness rather than as a
+  FOCUS-compliant billing dataset.
+modified: '2026-05-25'
+costSurfaces:
+  - id: gbfs-public
+    name: Public GBFS Feed
+    billed: false
+    license: https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+    notes: Free to consume under the GBFS Data License Agreement.
+  - id: city-data-portal
+    name: City Data Portal
+    billed: per-contract
+    license: Per-city partnership agreement
+    notes: Pricing is negotiated per municipality; no published rate card.
+  - id: bird-platform-fleet
+    name: Bird Platform — Fleet Operator Revenue Share
+    billed: true
+    billingModel: revenue-share-per-ride
+    vehicleCost: at-cost (minimum 50-unit purchase)
+    notes: >-
+      Bird charges a service fee per ride to the local fleet operator. The
+      service fee percentage is not publicly disclosed. Operators receive
+      historical analytics in the hosted dashboard but no FOCUS-aligned
+      cost-and-usage export.
+  - id: rider-trips
+    name: Rider Trip Revenue
+    billed: true
+    billingModel: per-trip (unlock + per-minute, in-app)
+    notes: >-
+      Trip revenue is collected by Bird (directly-operated markets) or by
+      the local Bird Platform operator. Not exposed via any public API.
+focusAlignmentGaps:
+  - No public cost-and-usage export aligned with FOCUS columns
+  - No webhook or stream of trip / billing events for operators outside the dashboard
+  - No invoice API for cities partner contracts
+sources:
+  - https://www.bird.co/platform
+  - https://www.bird.co/cities
+  - https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf

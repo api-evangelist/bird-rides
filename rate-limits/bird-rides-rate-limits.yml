@@ -1,0 +1,39 @@
+aid: bird-rides
+name: Bird Rate Limits
+specification: API Commons Rate Limits 0.1
+description: >-
+  Bird does not publish numeric rate limits for any of its API surfaces. The
+  public GBFS feeds are cached behind a CDN with a 60-second `ttl` field
+  embedded in every response, which is the effective consumer-side polling
+  guidance. The credentialed city-data portal and the unofficial mobile-app
+  backend may enforce server-side limits but they are not documented.
+modified: '2026-05-25'
+surfaces:
+  - id: gbfs-public
+    name: Public GBFS Feed
+    baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+    documentedLimits: false
+    guidance:
+      pollingInterval: 60 seconds (matches GBFS `ttl` field in every response)
+      caching: CDN-served; ETag / Last-Modified respected
+      conformance: Per GBFS v2.3 — consumers MUST honour the `ttl` value
+    reference: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - id: city-data-portal
+    name: City Data Portal (credentialed)
+    baseURL: https://city-data.bird.co
+    documentedLimits: false
+    guidance:
+      access: Credentialed; request via city@bird.co or benelux@bird.co
+      limits: Not publicly documented; enforced server-side at Bird's discretion
+  - id: mobile-app-backend
+    name: Mobile App Backend (unofficial)
+    baseURL: https://api.birdapp.com
+    documentedLimits: false
+    guidance:
+      access: Reverse-engineered; not sanctioned for third-party use
+      tokenTTL: Access tokens expire after ~24 hours
+      limits: Not documented; subject to change without notice
+sources:
+  - https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - https://github.com/ubahnverleih/WoBike/blob/master/Bird.md

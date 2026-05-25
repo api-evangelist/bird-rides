@@ -1,0 +1,23 @@
+{
+  "version": "2.3",
+  "data": {
+    "system_id": "bird-los-angeles",
+    "name": "bird los angeles",
+    "language": "en",
+    "timezone": "US/Pacific",
+    "license_url": "https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf",
+    "operator": "Bird Rides, Inc.",
+    "rental_apps": {
+      "android": {
+        "discovery_uri": "bird://charger-onboarding",
+        "store_uri": "https://play.google.com/store/apps/details?id=co.bird.android"
+      },
+      "ios": {
+        "discovery_uri": "bird://",
+        "store_uri": "https://apps.apple.com/us/app/bird-be-free-enjoy-the-ride/id1260842311"
+      }
+    }
+  },
+  "last_updated": 1779729799,
+  "ttl": 60
+}

@@ -1,0 +1,58 @@
+aid: bird-rides
+name: Bird
+reviewed: '2026-05-25'
+reviewer: Kin Lane
+tier: 1
+tierRationale: >-
+  Bird publishes a real, observable, machine-readable API surface in the form
+  of GBFS v2.3 auto-discovery feeds at mds.bird.co for 88+ cities across 12
+  countries. The feeds are documented in the canonical MobilityData
+  systems.csv, served under a published data-license URL, refresh every 60
+  seconds, and expose vehicle locations, vehicle types (scooters and
+  electric-assist bicycles), geofencing polygons, pricing plans, and system
+  regions. A separate credentialed municipal data portal (city-data.bird.co)
+  exists for partner cities and is referenced from Bird's own /cities page.
+  These qualify Bird as Tier 1 — they ship a working open API, not just a
+  marketing page.
+strengths:
+  - Active GBFS v2.3 feeds with predictable URL pattern across 88 cities and 12 countries
+  - 60-second TTL with both v1.1 and v2.3 advertised for backwards compatibility
+  - GeoJSON geofencing exposed publicly — useful for compliance research and routing
+  - Both scooters AND electric-assist bicycles present in vehicle_types (Bird Bikeshare)
+  - Clear data-license URL co-located with system_information
+  - Documented contact path to government partnerships (city@bird.co, benelux@bird.co)
+  - Operational stability post-bankruptcy under Third Lane Mobility parent
+  - Sister-brand reuse — Spin shares the Third Lane Mobility operating org
+gaps:
+  - No public developer portal for non-municipal consumers
+  - No published OpenAPI document — only the generic GBFS spec is referenced
+  - The "in-depth APIs" advertised on /cities are not documented externally
+  - Mobile-app backend (api.birdapp.com) is reverse-engineered via WoBike, not officially supported
+  - Bird's primary GitHub org (github.com/birdrides) hosts forks and internal tooling but no open-source SDKs, CLIs, or spec repos
+  - system_pricing_plans returns an empty plans array in most observed feeds — pricing is set in-app
+  - No status page identified
+  - No public changelog or release notes for the platform / GBFS surface
+artifacts:
+  openapi:
+    - openapi/bird-gbfs-openapi.yml
+  json-schema:
+    - json-schema/bird-vehicle-schema.json
+    - json-schema/bird-system-information-schema.json
+    - json-schema/bird-geofencing-zone-schema.json
+  json-ld:
+    - json-ld/bird-rides-context.jsonld
+  examples:
+    - examples/bird-system-information-example.json
+    - examples/bird-vehicle-types-example.json
+  vocabulary:
+    - vocabulary/bird-rides-vocabulary.yml
+sources:
+  - https://www.bird.co
+  - https://www.bird.co/cities
+  - https://www.bird.co/platform
+  - https://www.bird.co/blog/bird-successfully-emerges-from-bankruptcy-as-a-stronger-company-and-will-operate-as-the-global-anchor-brand-of-newly-established-third-lane-mobility-inc/
+  - https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - https://github.com/MobilityData/gbfs/blob/master/systems.csv
+  - https://github.com/ubahnverleih/WoBike/blob/master/Bird.md
+  - https://sharedmobility.github.io/Bird.html
+  - https://en.wikipedia.org/wiki/Bird_Global

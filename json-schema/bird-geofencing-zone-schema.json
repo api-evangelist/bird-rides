@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bird-rides/refs/heads/main/json-schema/bird-geofencing-zone-schema.json",
+  "title": "Bird Geofencing Zone",
+  "description": "A single feature in Bird's GBFS geofencing_zones FeatureCollection, describing a polygon where ride, ride-through, parking, or speed-cap rules apply.",
+  "type": "object",
+  "required": ["type", "geometry"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "Feature"
+    },
+    "geometry": {
+      "type": "object",
+      "description": "GeoJSON geometry; typically a Polygon or MultiPolygon defining the zone boundary.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["Polygon", "MultiPolygon"]
+        },
+        "coordinates": {
+          "type": "array"
+        }
+      },
+      "required": ["type", "coordinates"]
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable zone name (e.g. 'University no-park zone')."
+        },
+        "start": {
+          "type": "integer",
+          "description": "POSIX timestamp at which the zone becomes active."
+        },
+        "end": {
+          "type": "integer",
+          "description": "POSIX timestamp at which the zone expires; null/absent for permanent zones."
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "vehicle_type_id": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Vehicle types to which this rule applies. Omit/empty means all types."
+              },
+              "ride_allowed": {
+                "type": "boolean",
+                "description": "Whether a rider may start or be inside an active ride within the zone."
+              },
+              "ride_through_allowed": {
+                "type": "boolean",
+                "description": "Whether riders may pass through the zone without stopping."
+              },
+              "maximum_speed_kph": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Maximum speed cap enforced by the vehicle inside the zone."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

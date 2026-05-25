@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "gbfs": "https://github.com/MobilityData/gbfs/blob/master/gbfs.md#",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "geojson": "https://purl.org/geojson/vocab#",
+    "bird": "https://raw.githubusercontent.com/api-evangelist/bird-rides/refs/heads/main/vocabulary/bird-rides-vocabulary.yml#",
+    "Vehicle": "bird:Vehicle",
+    "Scooter": "bird:Scooter",
+    "Bicycle": "bird:Bicycle",
+    "System": "bird:System",
+    "GeofencingZone": "bird:GeofencingZone",
+    "City": {
+      "@id": "schema:City",
+      "@type": "@id"
+    },
+    "operator": {
+      "@id": "schema:provider",
+      "@type": "@id"
+    },
+    "system_id": {
+      "@id": "gbfs:system_id"
+    },
+    "name": "schema:name",
+    "language": {
+      "@id": "schema:inLanguage"
+    },
+    "timezone": "schema:timezone",
+    "license_url": {
+      "@id": "schema:license",
+      "@type": "@id"
+    },
+    "bike_id": {
+      "@id": "gbfs:bike_id"
+    },
+    "vehicle_type_id": "gbfs:vehicle_type_id",
+    "form_factor": "gbfs:form_factor",
+    "propulsion_type": "gbfs:propulsion_type",
+    "max_range_meters": "gbfs:max_range_meters",
+    "current_range_meters": "gbfs:current_range_meters",
+    "is_reserved": "gbfs:is_reserved",
+    "is_disabled": "gbfs:is_disabled",
+    "last_reported": "gbfs:last_reported",
+    "lat": {
+      "@id": "geo:lat",
+      "@type": "xsd:decimal"
+    },
+    "lon": {
+      "@id": "geo:long",
+      "@type": "xsd:decimal"
+    },
+    "geometry": "geojson:geometry",
+    "rules": "gbfs:rules",
+    "ride_allowed": "gbfs:ride_allowed",
+    "ride_through_allowed": "gbfs:ride_through_allowed",
+    "maximum_speed_kph": "gbfs:maximum_speed_kph"
+  }
+}

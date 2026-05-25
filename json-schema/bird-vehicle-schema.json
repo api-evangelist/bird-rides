@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bird-rides/refs/heads/main/json-schema/bird-vehicle-schema.json",
+  "title": "Bird Vehicle",
+  "description": "A single free-floating Bird vehicle as returned in the GBFS free_bike_status feed. Bird operates electric scooters and electric-assist bicycles; a vehicle's form factor is resolved by joining vehicle_type_id against the vehicle_types feed.",
+  "type": "object",
+  "required": ["bike_id", "lat", "lon", "is_reserved", "is_disabled"],
+  "properties": {
+    "bike_id": {
+      "type": "string",
+      "description": "Anonymized rotating identifier per GBFS PII guidance."
+    },
+    "lat": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude in WGS84 decimal degrees."
+    },
+    "lon": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude in WGS84 decimal degrees."
+    },
+    "is_reserved": {
+      "type": "boolean",
+      "description": "True when the vehicle is currently reserved by a rider."
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "description": "True when the vehicle is taken out of service (low battery, damage, maintenance)."
+    },
+    "vehicle_type_id": {
+      "type": "string",
+      "description": "References a vehicle_type_id from the vehicle_types feed."
+    },
+    "current_range_meters": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Estimated remaining range in meters based on battery state."
+    },
+    "last_reported": {
+      "type": "integer",
+      "description": "POSIX timestamp of the last vehicle telemetry update."
+    }
+  },
+  "additionalProperties": true
+}

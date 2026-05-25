@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bird-rides/refs/heads/main/json-schema/bird-system-information-schema.json",
+  "title": "Bird System Information",
+  "description": "Identifying metadata for a single Bird city deployment as published in the GBFS system_information.json feed.",
+  "type": "object",
+  "required": ["system_id", "name", "language", "timezone"],
+  "properties": {
+    "system_id": {
+      "type": "string",
+      "description": "Globally unique identifier for this Bird deployment (e.g. bird-los-angeles).",
+      "pattern": "^bird[-_].+"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable system name."
+    },
+    "operator": {
+      "type": "string",
+      "description": "Legal operator name. For directly-operated markets this is 'Bird Rides, Inc.'; for Bird Platform markets it is the local fleet operator.",
+      "examples": ["Bird Rides, Inc."]
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary IETF language tag for rider-facing strings.",
+      "examples": ["en", "es", "de", "fr", "fi", "it", "pt", "nl"]
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Olson timezone identifier for the deployment."
+    },
+    "license_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to Bird's GBFS Data License Agreement governing reuse of the feed."
+    },
+    "rental_apps": {
+      "type": "object",
+      "properties": {
+        "android": {
+          "$ref": "#/$defs/rentalApp"
+        },
+        "ios": {
+          "$ref": "#/$defs/rentalApp"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "rentalApp": {
+      "type": "object",
+      "properties": {
+        "discovery_uri": {
+          "type": "string"
+        },
+        "store_uri": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
