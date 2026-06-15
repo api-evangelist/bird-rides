@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bird GBFS Feed",
+    "version": "2.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get GBFS Auto-Discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/gbfs.json"
+          },
+          "docs": "Returns the GBFS auto-discovery document listing every sub-feed available for this Bird city, with URLs and feed names. Per GBFS v2.3, the response is wrapped in language-keyed feeds objects."
+        },
+        {
+          "info": {
+            "name": "List GBFS Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/gbfs_versions.json"
+          },
+          "docs": "Lists the GBFS specification versions supported by this Bird city feed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get System Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/system_information.json"
+          },
+          "docs": "Returns identifying information about this Bird city deployment — system_id, name, operator, language, timezone, license_url, and the rental_apps discovery / store URIs for iOS and Android."
+        },
+        {
+          "info": {
+            "name": "List System Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/system_regions.json"
+          },
+          "docs": "Returns named regions / service-area subdivisions used by this Bird city deployment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vehicles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Vehicle Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/vehicle_types.json"
+          },
+          "docs": "Returns every vehicle type operating in this Bird city. Typical responses include an `electric` scooter (form_factor=scooter) and an `electric_assist` bicycle (form_factor=bicycle), each with a max_range_meters value."
+        },
+        {
+          "info": {
+            "name": "List Free-Floating Vehicles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/free_bike_status.json"
+          },
+          "docs": "Returns the real-time list of available free-floating Bird vehicles in this city. Each entry includes bike_id, lat, lon, is_reserved, is_disabled, vehicle_type_id, and current_range_meters / battery information. Updated every 60 seconds."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Station Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/station_information.json"
+          },
+          "docs": "Returns any docking or hub stations defined for this Bird city. Most Bird markets are free-floating, so the stations array is often empty."
+        },
+        {
+          "info": {
+            "name": "Get Station Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/station_status.json"
+          },
+          "docs": "Returns the real-time vehicle counts at each station defined in station_information.json. Free-floating Bird markets return an empty stations array."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geofencing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Geofencing Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/geofencing_zones.json"
+          },
+          "docs": "Returns the GeoJSON FeatureCollection of no-ride, no-parking, and reduced-speed zones enforced by the Bird app for this city."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List System Pricing Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/system_pricing_plans.json"
+          },
+          "docs": "Returns the rider-facing pricing plans for this Bird city. Many Bird feeds return an empty plans array — pricing is set in-app and per-market."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
