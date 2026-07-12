@@ -181,6 +181,8 @@ apis:
       - type: Documentation
         url: https://sharedmobility.github.io/Bird.html
 common:
+  - type: DomainSecurity
+    url: security/bird-rides-domain-security.yml
   - type: Website
     url: https://www.bird.co
   - type: Product
