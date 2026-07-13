@@ -2,11 +2,13 @@
   "repo": "bird-rides",
   "feeds": [
     {
-      "source": "https://www.bird.co/blog",
+      "source": "https://www.bird.co/press",
+      "feed_url": "https://www.bird.co/press",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 404 Not Found"
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:27:50Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 10
 }
