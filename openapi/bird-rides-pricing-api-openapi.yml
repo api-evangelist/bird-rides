@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Bird GBFS Feed Discovery Pricing API
+  version: 2.3.0
+  summary: Bird's Public General Bikeshare Feed Specification Feed
+  description: OpenAPI description of Bird's public General Bikeshare Feed Specification (GBFS) v2.3 surface hosted at https://mds.bird.co/gbfs/v2/public/{city}. Each Bird city exposes the same nine GBFS sub-feeds — gbfs (auto-discovery), gbfs_versions, system_information, vehicle_types, free_bike_status, station_information, station_status, geofencing_zones, system_pricing_plans, and system_regions — with a 60-second TTL. Bird operates 88+ city feeds across Austria, Belgium, Canada, Switzerland, Germany, Spain, Finland, France, Israel, Italy, Portugal, and the United States. Data is licensed under Bird's GBFS Data License Agreement.
+  contact:
+    name: Bird Government Partnerships
+    email: city@bird.co
+    url: https://www.bird.co/cities
+  license:
+    name: Bird GBFS Data License Agreement
+    url: https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+servers:
+- url: https://mds.bird.co/gbfs/v2/public/{city}
+  description: Bird GBFS public feed for a given city
+  variables:
+    city:
+      default: los-angeles
+      description: City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.
+tags:
+- name: Pricing
+  description: Rider-facing pricing plans
+paths:
+  /system_pricing_plans.json:
+    get:
+      operationId: getSystemPricingPlans
+      summary: List System Pricing Plans
+      description: Returns the rider-facing pricing plans for this Bird city. Many Bird feeds return an empty plans array — pricing is set in-app and per-market.
+      tags:
+      - Pricing
+      responses:
+        '200':
+          description: Pricing plans payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemPricingPlans'
+components:
+  schemas:
+    SystemPricingPlans:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              plans:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    plan_id:
+                      type: string
+                    name:
+                      type: string
+                    currency:
+                      type: string
+                    price:
+                      type: number
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object

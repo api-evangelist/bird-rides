@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Bird GBFS Feed Discovery Vehicles API
+  version: 2.3.0
+  summary: Bird's Public General Bikeshare Feed Specification Feed
+  description: OpenAPI description of Bird's public General Bikeshare Feed Specification (GBFS) v2.3 surface hosted at https://mds.bird.co/gbfs/v2/public/{city}. Each Bird city exposes the same nine GBFS sub-feeds — gbfs (auto-discovery), gbfs_versions, system_information, vehicle_types, free_bike_status, station_information, station_status, geofencing_zones, system_pricing_plans, and system_regions — with a 60-second TTL. Bird operates 88+ city feeds across Austria, Belgium, Canada, Switzerland, Germany, Spain, Finland, France, Israel, Italy, Portugal, and the United States. Data is licensed under Bird's GBFS Data License Agreement.
+  contact:
+    name: Bird Government Partnerships
+    email: city@bird.co
+    url: https://www.bird.co/cities
+  license:
+    name: Bird GBFS Data License Agreement
+    url: https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+servers:
+- url: https://mds.bird.co/gbfs/v2/public/{city}
+  description: Bird GBFS public feed for a given city
+  variables:
+    city:
+      default: los-angeles
+      description: City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.
+tags:
+- name: Vehicles
+  description: Vehicle inventory and real-time availability
+paths:
+  /vehicle_types.json:
+    get:
+      operationId: getVehicleTypes
+      summary: List Vehicle Types
+      description: Returns every vehicle type operating in this Bird city. Typical responses include an `electric` scooter (form_factor=scooter) and an `electric_assist` bicycle (form_factor=bicycle), each with a max_range_meters value.
+      tags:
+      - Vehicles
+      responses:
+        '200':
+          description: Vehicle types payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleTypes'
+  /free_bike_status.json:
+    get:
+      operationId: getFreeBikeStatus
+      summary: List Free-Floating Vehicles
+      description: Returns the real-time list of available free-floating Bird vehicles in this city. Each entry includes bike_id, lat, lon, is_reserved, is_disabled, vehicle_type_id, and current_range_meters / battery information. Updated every 60 seconds.
+      tags:
+      - Vehicles
+      responses:
+        '200':
+          description: Free bike status payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FreeBikeStatus'
+components:
+  schemas:
+    FreeBikeStatus:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              bikes:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+    Vehicle:
+      type: object
+      required:
+      - bike_id
+      - lat
+      - lon
+      - is_reserved
+      - is_disabled
+      properties:
+        bike_id:
+          type: string
+          description: Anonymized rotating identifier for this vehicle
+        lat:
+          type: number
+        lon:
+          type: number
+        is_reserved:
+          type: boolean
+        is_disabled:
+          type: boolean
+        vehicle_type_id:
+          type: string
+        current_range_meters:
+          type: number
+        last_reported:
+          type: integer
+          format: int64
+    VehicleTypes:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              vehicle_types:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleType'
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object
+    VehicleType:
+      type: object
+      required:
+      - vehicle_type_id
+      - form_factor
+      - propulsion_type
+      properties:
+        vehicle_type_id:
+          type: string
+        form_factor:
+          type: string
+          enum:
+          - scooter
+          - bicycle
+          - car
+          - moped
+          - other
+        propulsion_type:
+          type: string
+          enum:
+          - human
+          - electric_assist
+          - electric
+          - combustion
+          - other
+        max_range_meters:
+          type: number

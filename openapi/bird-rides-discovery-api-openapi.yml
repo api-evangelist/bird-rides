@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Bird GBFS Feed Discovery API
+  version: 2.3.0
+  summary: Bird's Public General Bikeshare Feed Specification Feed
+  description: OpenAPI description of Bird's public General Bikeshare Feed Specification (GBFS) v2.3 surface hosted at https://mds.bird.co/gbfs/v2/public/{city}. Each Bird city exposes the same nine GBFS sub-feeds — gbfs (auto-discovery), gbfs_versions, system_information, vehicle_types, free_bike_status, station_information, station_status, geofencing_zones, system_pricing_plans, and system_regions — with a 60-second TTL. Bird operates 88+ city feeds across Austria, Belgium, Canada, Switzerland, Germany, Spain, Finland, France, Israel, Italy, Portugal, and the United States. Data is licensed under Bird's GBFS Data License Agreement.
+  contact:
+    name: Bird Government Partnerships
+    email: city@bird.co
+    url: https://www.bird.co/cities
+  license:
+    name: Bird GBFS Data License Agreement
+    url: https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+servers:
+- url: https://mds.bird.co/gbfs/v2/public/{city}
+  description: Bird GBFS public feed for a given city
+  variables:
+    city:
+      default: los-angeles
+      description: City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.
+tags:
+- name: Discovery
+  description: GBFS auto-discovery and version metadata
+paths:
+  /gbfs.json:
+    get:
+      operationId: getGbfsDiscovery
+      summary: Get GBFS Auto-Discovery
+      description: Returns the GBFS auto-discovery document listing every sub-feed available for this Bird city, with URLs and feed names. Per GBFS v2.3, the response is wrapped in language-keyed feeds objects.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: GBFS auto-discovery payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GbfsDiscovery'
+  /gbfs_versions.json:
+    get:
+      operationId: getGbfsVersions
+      summary: List GBFS Versions
+      description: Lists the GBFS specification versions supported by this Bird city feed.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: Supported GBFS versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GbfsVersions'
+components:
+  schemas:
+    GbfsVersions:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              versions:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - version
+                  - url
+                  properties:
+                    version:
+                      type: string
+                    url:
+                      type: string
+                      format: uri
+    GbfsDiscovery:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            additionalProperties:
+              type: object
+              properties:
+                feeds:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                    - name
+                    - url
+                    properties:
+                      name:
+                        type: string
+                      url:
+                        type: string
+                        format: uri
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object

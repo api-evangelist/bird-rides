@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: Bird GBFS Feed Discovery System API
+  version: 2.3.0
+  summary: Bird's Public General Bikeshare Feed Specification Feed
+  description: OpenAPI description of Bird's public General Bikeshare Feed Specification (GBFS) v2.3 surface hosted at https://mds.bird.co/gbfs/v2/public/{city}. Each Bird city exposes the same nine GBFS sub-feeds — gbfs (auto-discovery), gbfs_versions, system_information, vehicle_types, free_bike_status, station_information, station_status, geofencing_zones, system_pricing_plans, and system_regions — with a 60-second TTL. Bird operates 88+ city feeds across Austria, Belgium, Canada, Switzerland, Germany, Spain, Finland, France, Israel, Italy, Portugal, and the United States. Data is licensed under Bird's GBFS Data License Agreement.
+  contact:
+    name: Bird Government Partnerships
+    email: city@bird.co
+    url: https://www.bird.co/cities
+  license:
+    name: Bird GBFS Data License Agreement
+    url: https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+servers:
+- url: https://mds.bird.co/gbfs/v2/public/{city}
+  description: Bird GBFS public feed for a given city
+  variables:
+    city:
+      default: los-angeles
+      description: City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.
+tags:
+- name: System
+  description: System-level information and regions
+paths:
+  /system_information.json:
+    get:
+      operationId: getSystemInformation
+      summary: Get System Information
+      description: Returns identifying information about this Bird city deployment — system_id, name, operator, language, timezone, license_url, and the rental_apps discovery / store URIs for iOS and Android.
+      tags:
+      - System
+      responses:
+        '200':
+          description: System information payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemInformation'
+  /system_regions.json:
+    get:
+      operationId: getSystemRegions
+      summary: List System Regions
+      description: Returns named regions / service-area subdivisions used by this Bird city deployment.
+      tags:
+      - System
+      responses:
+        '200':
+          description: System regions payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemRegions'
+components:
+  schemas:
+    SystemInformation:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            required:
+            - system_id
+            - name
+            - language
+            - timezone
+            properties:
+              system_id:
+                type: string
+                example: bird-los-angeles
+              name:
+                type: string
+              operator:
+                type: string
+              language:
+                type: string
+              timezone:
+                type: string
+              license_url:
+                type: string
+                format: uri
+              rental_apps:
+                type: object
+                properties:
+                  android:
+                    $ref: '#/components/schemas/RentalApp'
+                  ios:
+                    $ref: '#/components/schemas/RentalApp'
+    SystemRegions:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              regions:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - region_id
+                  - name
+                  properties:
+                    region_id:
+                      type: string
+                    name:
+                      type: string
+    RentalApp:
+      type: object
+      properties:
+        discovery_uri:
+          type: string
+        store_uri:
+          type: string
+          format: uri
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object
