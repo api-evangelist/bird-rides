@@ -24,9 +24,21 @@ description: >-
   api-auth.prod.birdapp.com is well-documented in the community WoBike
   project but is not officially sanctioned for third-party use.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Free · Requires approval
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bird-rides.png
 tags:
   - Micromobility
   - Shared Mobility
@@ -50,136 +62,293 @@ created: '2026-05-25'
 modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
-  - aid: bird-rides:bird-gbfs-api
-    name: Bird GBFS Feed
-    description: >-
-      Bird's public General Bikeshare Feed Specification (GBFS) v2.3
-      auto-discovery feeds. Each city has its own auto-discovery document at
-      https://mds.bird.co/gbfs/v2/public/{city}/gbfs.json that links to nine
-      sub-feeds — system_information, vehicle_types, free_bike_status,
-      station_information, station_status, geofencing_zones,
-      system_pricing_plans, system_regions, and gbfs_versions — with a
-      60-second TTL. As of this profile Bird publishes feeds for 88 cities
-      across Austria, Belgium, Canada, Switzerland, Germany, Spain, Finland,
-      France, Israel, Italy, Portugal, and the United States. The feeds are
-      free to consume under the GBFS Data License Agreement at
-      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf,
-      and they expose real-time vehicle locations, battery levels, vehicle
-      types (scooter and electric-assist bicycle), no-ride and no-parking
-      geofencing polygons, pricing plans, and service regions for every Bird
-      market.
-    tags:
-      - GBFS
-      - Micromobility
-      - Real-time
-      - Geofencing
-      - Vehicle Locations
-    humanURL: https://github.com/MobilityData/gbfs
-    baseURL: https://mds.bird.co/gbfs/v2/public/{city}
-    properties:
-      - type: Documentation
-        url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
-      - type: Discovery
-        url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
-      - type: License
-        url: https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
-      - type: OpenAPI
-        url: openapi/bird-gbfs-openapi.yml
-      - type: JSONSchema
-        url: json-schema/bird-vehicle-schema.json
-      - type: JSONSchema
-        url: json-schema/bird-system-information-schema.json
-      - type: JSONSchema
-        url: json-schema/bird-geofencing-zone-schema.json
-      - type: JSONLD
-        url: json-ld/bird-rides-context.jsonld
-      - type: Examples
-        url: examples/bird-system-information-example.json
-      - type: Examples
-        url: examples/bird-vehicle-types-example.json
-      - type: Vocabulary
-        url: vocabulary/bird-rides-vocabulary.yml
-  - aid: bird-rides:bird-city-data-portal
-    name: Bird City Data Portal
-    description: >-
-      Credentialed city / municipal data portal at https://city-data.bird.co
-      providing partner cities with access to fleet, trip, and operational
-      data feeds beyond the public GBFS surface. Access is granted to
-      municipal staff and authorized researchers under a data-sharing
-      agreement; credentials are requested directly from Bird's government
-      partnerships team (city@bird.co; benelux@bird.co for EMEA). Bird
-      markets this surface as the "in-depth APIs" that let cities analyze
-      micromobility trends and measure infrastructure impact. The portal is
-      not a public developer API and there is no published OpenAPI
-      definition.
-    tags:
-      - Cities
-      - Government
-      - Municipal
-      - MDS
-      - Compliance
-      - Trip Data
-    humanURL: https://city-data.bird.co/login
-    properties:
-      - type: Portal
-        url: https://city-data.bird.co/login
-      - type: Documentation
-        url: https://www.bird.co/cities
-      - type: Contact
-        url: mailto:city@bird.co
-      - type: Contact
-        url: mailto:benelux@bird.co
-  - aid: bird-rides:bird-platform-operator
-    name: Bird Platform (Fleet Operator)
-    description: >-
-      Bird Platform is the white-label fleet operator program that lets
-      independent local operators run a Bird-branded e-scooter service in
-      their own market using Bird vehicles, the Bird consumer app, and a
-      Bird-hosted real-time data dashboard with geospatial tooling, historic
-      analytics, and GovTech compliance features. Vehicles are sold at cost
-      with a minimum order of 50 units, and Bird charges a revenue-share
-      service fee per ride. The platform is invitation / qualification based
-      and does not publish a developer API surface — operators interact via
-      the hosted dashboard.
-    tags:
-      - Fleet Operator
-      - White Label
-      - Dashboard
-      - Operations
-    humanURL: https://www.bird.co/platform
-    properties:
-      - type: Portal
-        url: https://www.bird.co/platform
-      - type: Documentation
-        url: https://www.bird.co/us-fm
-      - type: Documentation
-        url: https://www.bird.co/us-op
-  - aid: bird-rides:bird-mobile-app-api
-    name: Bird Mobile App Backend (Unofficial)
-    description: >-
-      The undocumented mobile-app backend that powers the Bird iOS and
-      Android consumer apps. Hosts include api.birdapp.com,
-      api-auth.prod.birdapp.com, and api-bird.prod.birdapp.com. The surface
-      is email + magic-link authentication, JWT access / refresh tokens
-      (24-hour TTL), and endpoints for nearby vehicles, configuration, and
-      ride lifecycle. The surface is reverse-engineered and documented in
-      the community-maintained WoBike project but is NOT a sanctioned
-      third-party API — there is no developer portal, no rate-limit
-      documentation, no terms of service for programmatic use, and access
-      can change without notice. Listed here for completeness and
-      transparency, not as a recommended integration target.
-    tags:
-      - Mobile
-      - Unofficial
-      - Reverse Engineered
-      - Consumer
-    humanURL: https://github.com/ubahnverleih/WoBike/blob/master/Bird.md
-    baseURL: https://api.birdapp.com
-    properties:
-      - type: Documentation
-        url: https://github.com/ubahnverleih/WoBike/blob/master/Bird.md
-      - type: Documentation
-        url: https://sharedmobility.github.io/Bird.html
+- aid: bird-rides:bird-city-data-portal
+  name: Bird City Data Portal
+  description: >-
+    Credentialed city / municipal data portal at https://city-data.bird.co providing partner cities with
+    access to fleet, trip, and operational data feeds beyond the public GBFS surface. Access is granted
+    to municipal staff and authorized researchers under a data-sharing agreement; credentials are requested
+    directly from Bird's government partnerships team (city@bird.co; benelux@bird.co for EMEA). Bird markets
+    this surface as the "in-depth APIs" that let cities analyze micromobility trends and measure infrastructure
+    impact. The portal is not a public developer API and there is no published OpenAPI definition.
+  tags:
+  - Cities
+  - Government
+  - Municipal
+  - MDS
+  - Compliance
+  - Trip Data
+  humanURL: https://city-data.bird.co/login
+  properties:
+  - type: Portal
+    url: https://city-data.bird.co/login
+  - type: Documentation
+    url: https://www.bird.co/cities
+  - type: Contact
+    url: mailto:city@bird.co
+  - type: Contact
+    url: mailto:benelux@bird.co
+- aid: bird-rides:bird-platform-operator
+  name: Bird Platform (Fleet Operator)
+  description: >-
+    Bird Platform is the white-label fleet operator program that lets independent local operators run
+    a Bird-branded e-scooter service in their own market using Bird vehicles, the Bird consumer app, and
+    a Bird-hosted real-time data dashboard with geospatial tooling, historic analytics, and GovTech compliance
+    features. Vehicles are sold at cost with a minimum order of 50 units, and Bird charges a revenue-share
+    service fee per ride. The platform is invitation / qualification based and does not publish a developer
+    API surface — operators interact via the hosted dashboard.
+  tags:
+  - Fleet Operator
+  - White Label
+  - Dashboard
+  - Operations
+  humanURL: https://www.bird.co/platform
+  properties:
+  - type: Portal
+    url: https://www.bird.co/platform
+  - type: Documentation
+    url: https://www.bird.co/us-fm
+  - type: Documentation
+    url: https://www.bird.co/us-op
+- aid: bird-rides:bird-mobile-app-api
+  name: Bird Mobile App Backend (Unofficial)
+  description: >-
+    The undocumented mobile-app backend that powers the Bird iOS and Android consumer apps. Hosts include
+    api.birdapp.com, api-auth.prod.birdapp.com, and api-bird.prod.birdapp.com. The surface is email +
+    magic-link authentication, JWT access / refresh tokens (24-hour TTL), and endpoints for nearby vehicles,
+    configuration, and ride lifecycle. The surface is reverse-engineered and documented in the community-maintained
+    WoBike project but is NOT a sanctioned third-party API — there is no developer portal, no rate-limit
+    documentation, no terms of service for programmatic use, and access can change without notice. Listed
+    here for completeness and transparency, not as a recommended integration target.
+  tags:
+  - Mobile
+  - Unofficial
+  - Reverse Engineered
+  - Consumer
+  humanURL: https://github.com/ubahnverleih/WoBike/blob/master/Bird.md
+  baseURL: https://api.birdapp.com
+  properties:
+  - type: Documentation
+    url: https://github.com/ubahnverleih/WoBike/blob/master/Bird.md
+  - type: Documentation
+    url: https://sharedmobility.github.io/Bird.html
+- aid: bird-rides:bird-rides-discovery-api
+  name: Bird Discovery API
+  description: GBFS auto-discovery and version metadata
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
+- aid: bird-rides:bird-rides-geofencing-api
+  name: Bird Geofencing API
+  description: No-ride / no-parking polygon zones
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - Geofencing
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-geofencing-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
+- aid: bird-rides:bird-rides-pricing-api
+  name: Bird Pricing API
+  description: Rider-facing pricing plans
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-pricing-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
+- aid: bird-rides:bird-rides-realtime-api
+  name: Bird Realtime API
+  description: Real-time feeds with 60-second TTL
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - Realtime
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-realtime-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
+- aid: bird-rides:bird-rides-stations-api
+  name: Bird Stations API
+  description: Docking-station information (mostly empty for free-floating Bird markets)
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - Stations
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-stations-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
+- aid: bird-rides:bird-rides-system-api
+  name: Bird System API
+  description: System-level information and regions
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-system-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
+- aid: bird-rides:bird-rides-vehicles-api
+  name: Bird Vehicles API
+  description: Vehicle inventory and real-time availability
+  humanURL: https://github.com/MobilityData/gbfs
+  baseURL: https://mds.bird.co/gbfs/v2/public/{city}
+  tags:
+  - Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/bird-rides-vehicles-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/MobilityData/gbfs/blob/master/gbfs.md
+  - type: Discovery
+    url: https://mds.bird.co/gbfs/v2/public/los-angeles/gbfs.json
+  - type: License
+    url: >-
+      https://www.bird.co/wp-content/uploads/2019/03/GBFS-Data-License-Agreement-2018-09-25.pdf
+  - type: JSONSchema
+    url: json-schema/bird-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-system-information-schema.json
+  - type: JSONSchema
+    url: json-schema/bird-geofencing-zone-schema.json
+  - type: JSONLD
+    url: json-ld/bird-rides-context.jsonld
+  - type: Examples
+    url: examples/bird-system-information-example.json
+  - type: Examples
+    url: examples/bird-vehicle-types-example.json
+  - type: Vocabulary
+    url: vocabulary/bird-rides-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/bird-rides-agentic-access.yml
