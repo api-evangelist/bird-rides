@@ -1,0 +1,26 @@
+{
+  "provider": "bird-rides",
+  "sources": [
+    "bird-rides-discovery-api-openapi.yml",
+    "bird-rides-geofencing-api-openapi.yml",
+    "bird-rides-pricing-api-openapi.yml",
+    "bird-rides-realtime-api-openapi.yml",
+    "bird-rides-stations-api-openapi.yml",
+    "bird-rides-system-api-openapi.yml",
+    "bird-rides-vehicles-api-openapi.yml"
+  ],
+  "outputs": [
+    "bird-rides-discovery-api-openapi.yml",
+    "bird-rides-geofencing-api-openapi.yml",
+    "bird-rides-pricing-api-openapi.yml",
+    "bird-rides-realtime-api-openapi.yml",
+    "bird-rides-stations-api-openapi.yml",
+    "bird-rides-system-api-openapi.yml",
+    "bird-rides-vehicles-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
