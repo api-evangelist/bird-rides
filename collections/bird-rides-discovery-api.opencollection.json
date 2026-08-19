@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bird GBFS Feed Discovery API",
+    "version": "2.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get GBFS Auto-Discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/gbfs.json"
+          },
+          "docs": "Returns the GBFS auto-discovery document listing every sub-feed available for this Bird city, with URLs and feed names. Per GBFS v2.3, the response is wrapped in language-keyed feeds objects."
+        },
+        {
+          "info": {
+            "name": "List GBFS Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/gbfs_versions.json"
+          },
+          "docs": "Lists the GBFS specification versions supported by this Bird city feed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "433c8c64-290d-42db-91bd-a9da8b609b14",
+      "name": "Discovery",
+      "description": {
+        "content": "GBFS auto-discovery and version metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48c5bbcb-1bca-4cef-a774-4119b246ee38",
+          "name": "Get GBFS Auto-Discovery",
+          "request": {
+            "name": "Get GBFS Auto-Discovery",
+            "description": {
+              "content": "Returns the GBFS auto-discovery document listing every sub-feed available for this Bird city, with URLs and feed names. Per GBFS v2.3, the response is wrapped in language-keyed feeds objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gbfs.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.",
+                  "type": "any",
+                  "value": "{{city}}",
+                  "key": "city"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ab3d419-ed38-4403-b4ad-c3550a248d3e",
+              "name": "GBFS auto-discovery payload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gbfs.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.",
+                      "type": "any",
+                      "value": "{{city}}",
+                      "key": "city"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"data\": {\n    \"key_0\": {\n      \"feeds\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"https://bsRoynsUVEVzCF.xhyUumUy.Jze\"\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"https://DAFfFprmZNJNdmvrrgLZe.ixbmezVdAUGw+BZUlgLv3Y1\"\n        }\n      ]\n    },\n    \"key_1\": {\n      \"feeds\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"https://BxAkugefqPxbVcbUOlkoJKUovQbZjjMt.cnvsaATdzXjtM6gG32JcFNZgxVHNv\"\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"http://OewAvFoyDuVeUiLnZPGDBiUbRq.pczoKzYaaNMDAYUN\"\n        }\n      ]\n    },\n    \"key_2\": {\n      \"feeds\": [\n        {\n          \"name\": \"string\",\n          \"url\": \"http://zLAFOxpQZWH.mzttoug\"\n        },\n        {\n          \"name\": \"string\",\n          \"url\": \"http://zDmzKdpynbIgFBDQqDiL.zgkgGdL,ATS8KRDUMbZXUlG1JZuB6\"\n        }\n      ]\n    }\n  },\n  \"last_updated\": 1806,\n  \"ttl\": 7081\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a4b76bb-e711-487e-864e-71bc959b7529",
+          "name": "List GBFS Versions",
+          "request": {
+            "name": "List GBFS Versions",
+            "description": {
+              "content": "Lists the GBFS specification versions supported by this Bird city feed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gbfs_versions.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.",
+                  "type": "any",
+                  "value": "{{city}}",
+                  "key": "city"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f0106a2-d4b2-4c55-9489-f894db583864",
+              "name": "Supported GBFS versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gbfs_versions.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.",
+                      "type": "any",
+                      "value": "{{city}}",
+                      "key": "city"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"data\": {\n    \"versions\": [\n      {\n        \"version\": \"string\",\n        \"url\": \"https://TGgATxuoctHfAlpr.uzlrP9ii-SRqRPgVpNQ7aISiOR7mZWrfaEe2jdn7saOEetS,OQ94egazrFp,emAelTqbg\"\n      },\n      {\n        \"version\": \"string\",\n        \"url\": \"https://PUpjpuAhbzSJJNyUcOvNzPSTGomZ.wnF-BS5CiFTmeVKx0iUTT,UHh8jaVcyPxbMMr.rn9wWfvH0HZGE6TnXdFkXyMhCtmkt4882R5l\"\n      }\n    ]\n  },\n  \"last_updated\": 7667,\n  \"ttl\": 3799\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "City slug for the desired Bird market. Examples include los-angeles, madrid, barcelona, helsinki, munich, ulm, calgary, edmonton, ottawa, halifax, antwerp, zurich, basel, biel, ulm, wienerneustadt. The canonical list lives in the MobilityData systems.csv at https://github.com/MobilityData/gbfs/blob/master/systems.csv.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "los-angeles",
+      "key": "city"
+    },
+    {
+      "type": "string",
+      "value": "https://mds.bird.co/gbfs/v2/public/{{city}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0313f137-8c78-4aa9-9ad5-233e84d449f4",
+    "name": "Bird GBFS Feed Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description of Bird's public General Bikeshare Feed Specification (GBFS) v2.3 surface hosted at https://mds.bird.co/gbfs/v2/public/{city}. Each Bird city exposes the same nine GBFS sub-feeds — gbfs (auto-discovery), gbfs_versions, system_information, vehicle_types, free_bike_status, station_information, station_status, geofencing_zones, system_pricing_plans, and system_regions — with a 60-second TTL. Bird operates 88+ city feeds across Austria, Belgium, Canada, Switzerland, Germany, Spain, Finland, France, Israel, Italy, Portugal, and the United States. Data is licensed under Bird's GBFS Data License Agreement.\n\nContact Support:\n Name: Bird Government Partnerships\n Email: city@bird.co",
+      "type": "text/plain"
+    }
+  }
+}

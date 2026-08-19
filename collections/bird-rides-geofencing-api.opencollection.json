@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bird GBFS Feed Discovery Geofencing API",
+    "version": "2.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geofencing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Geofencing Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/geofencing_zones.json"
+          },
+          "docs": "Returns the GeoJSON FeatureCollection of no-ride, no-parking, and reduced-speed zones enforced by the Bird app for this city."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

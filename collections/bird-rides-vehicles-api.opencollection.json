@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bird GBFS Feed Discovery Vehicles API",
+    "version": "2.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vehicles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Vehicle Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/vehicle_types.json"
+          },
+          "docs": "Returns every vehicle type operating in this Bird city. Typical responses include an `electric` scooter (form_factor=scooter) and an `electric_assist` bicycle (form_factor=bicycle), each with a max_range_meters value."
+        },
+        {
+          "info": {
+            "name": "List Free-Floating Vehicles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/free_bike_status.json"
+          },
+          "docs": "Returns the real-time list of available free-floating Bird vehicles in this city. Each entry includes bike_id, lat, lon, is_reserved, is_disabled, vehicle_type_id, and current_range_meters / battery information. Updated every 60 seconds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

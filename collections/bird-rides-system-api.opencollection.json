@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bird GBFS Feed Discovery System API",
+    "version": "2.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get System Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/system_information.json"
+          },
+          "docs": "Returns identifying information about this Bird city deployment — system_id, name, operator, language, timezone, license_url, and the rental_apps discovery / store URIs for iOS and Android."
+        },
+        {
+          "info": {
+            "name": "List System Regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mds.bird.co/gbfs/v2/public/{city}/system_regions.json"
+          },
+          "docs": "Returns named regions / service-area subdivisions used by this Bird city deployment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
