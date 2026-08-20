@@ -45,6 +45,24 @@ tags:
   - Electric Scooters
   - E-Scooters
   - E-Bikes
+  - Bike Share
+  - Transportation
+  - Urban Mobility
+  - GBFS
+  - General Bikeshare Feed Specification
+  - Mobility Data Specification
+  - MDS
+  - Geofencing
+  - Cities
+  - Smart Cities
+  - Fleet Management
+  - Third Lane Mobility
+tags_raw:
+  - Micromobility
+  - Shared Mobility
+  - Electric Scooters
+  - E-Scooters
+  - E-Bikes
   - Bikeshare
   - Transportation
   - Urban Mobility
@@ -98,6 +116,10 @@ apis:
     service fee per ride. The platform is invitation / qualification based and does not publish a developer
     API surface — operators interact via the hosted dashboard.
   tags:
+  - Fleet Operator
+  - White Label
+  - Dashboard
+  tags_raw:
   - Fleet Operator
   - White Label
   - Dashboard
@@ -231,6 +253,8 @@ apis:
   humanURL: https://github.com/MobilityData/gbfs
   baseURL: https://mds.bird.co/gbfs/v2/public/{city}
   tags:
+  - Real-Time
+  tags_raw:
   - Realtime
   properties:
   - type: OpenAPI
