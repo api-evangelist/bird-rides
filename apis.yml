@@ -24,6 +24,18 @@ description: >-
   api-auth.prod.birdapp.com is well-documented in the community WoBike
   project but is not officially sanctioned for third-party use.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: approval
