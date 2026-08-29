@@ -386,6 +386,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/bird-rides-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/bird-rides-capability-edges.yml
+    name: Bird Business Capability Map
   - type: AgenticAccess
     url: agentic-access/bird-rides-agentic-access.yml
   - type: DomainSecurity
