@@ -55,7 +55,7 @@ tags:
   - Micromobility
   - Shared Mobility
   - Electric Scooters
-  - E-Scooters
+  - E-Scooter
   - E-Bikes
   - Bike Share
   - Transportation
@@ -130,7 +130,7 @@ apis:
   tags:
   - Fleet Operator
   - White Label
-  - Dashboard
+  - Dashboards
   tags_raw:
   - Fleet Operator
   - White Label
