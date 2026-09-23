@@ -1,13 +1,7 @@
 {
   "provider": "bird-rides",
   "sources": [
-    "bird-rides-discovery-api-openapi.yml",
-    "bird-rides-geofencing-api-openapi.yml",
-    "bird-rides-pricing-api-openapi.yml",
-    "bird-rides-realtime-api-openapi.yml",
-    "bird-rides-stations-api-openapi.yml",
-    "bird-rides-system-api-openapi.yml",
-    "bird-rides-vehicles-api-openapi.yml"
+    "_original/bird-gbfs-openapi.yml"
   ],
   "outputs": [
     "bird-rides-discovery-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bird-gbfs-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bird-rides-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bird-rides-geofencing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bird-rides-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bird-rides-realtime-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bird-rides-stations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bird-rides-system-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bird-rides-vehicles-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
