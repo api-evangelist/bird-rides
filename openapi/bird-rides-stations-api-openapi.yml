@@ -52,6 +52,24 @@ paths:
                 $ref: '#/components/schemas/StationStatus'
 components:
   schemas:
+    Station:
+      type: object
+      required:
+      - station_id
+      - name
+      - lat
+      - lon
+      properties:
+        station_id:
+          type: string
+        name:
+          type: string
+        lat:
+          type: number
+        lon:
+          type: number
+        capacity:
+          type: integer
     GbfsEnvelope:
       type: object
       required:
@@ -99,24 +117,6 @@ components:
                       type: boolean
                     is_returning:
                       type: boolean
-    Station:
-      type: object
-      required:
-      - station_id
-      - name
-      - lat
-      - lon
-      properties:
-        station_id:
-          type: string
-        name:
-          type: string
-        lat:
-          type: number
-        lon:
-          type: number
-        capacity:
-          type: integer
     StationInformation:
       allOf:
       - $ref: '#/components/schemas/GbfsEnvelope'

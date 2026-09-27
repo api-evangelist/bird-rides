@@ -64,33 +64,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/VehicleType'
-    Vehicle:
-      type: object
-      required:
-      - bike_id
-      - lat
-      - lon
-      - is_reserved
-      - is_disabled
-      properties:
-        bike_id:
-          type: string
-          description: Anonymized rotating identifier for this vehicle
-        lat:
-          type: number
-        lon:
-          type: number
-        is_reserved:
-          type: boolean
-        is_disabled:
-          type: boolean
-        vehicle_type_id:
-          type: string
-        current_range_meters:
-          type: number
-        last_reported:
-          type: integer
-          format: int64
     GbfsEnvelope:
       type: object
       required:
@@ -111,18 +84,6 @@ components:
           description: Seconds before the consumer should re-fetch this feed
         data:
           type: object
-    FreeBikeStatus:
-      allOf:
-      - $ref: '#/components/schemas/GbfsEnvelope'
-      - type: object
-        properties:
-          data:
-            type: object
-            properties:
-              bikes:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Vehicle'
     VehicleType:
       type: object
       required:
@@ -150,3 +111,42 @@ components:
           - other
         max_range_meters:
           type: number
+    FreeBikeStatus:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              bikes:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+    Vehicle:
+      type: object
+      required:
+      - bike_id
+      - lat
+      - lon
+      - is_reserved
+      - is_disabled
+      properties:
+        bike_id:
+          type: string
+          description: Anonymized rotating identifier for this vehicle
+        lat:
+          type: number
+        lon:
+          type: number
+        is_reserved:
+          type: boolean
+        is_disabled:
+          type: boolean
+        vehicle_type_id:
+          type: string
+        current_range_meters:
+          type: number
+        last_reported:
+          type: integer
+          format: int64
