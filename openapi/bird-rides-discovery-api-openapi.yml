@@ -52,6 +52,26 @@ paths:
                 $ref: '#/components/schemas/GbfsVersions'
 components:
   schemas:
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object
     GbfsDiscovery:
       allOf:
       - $ref: '#/components/schemas/GbfsEnvelope'
@@ -96,23 +116,3 @@ components:
                     url:
                       type: string
                       format: uri
-    GbfsEnvelope:
-      type: object
-      required:
-      - version
-      - data
-      - last_updated
-      - ttl
-      properties:
-        version:
-          type: string
-          description: GBFS spec version (e.g. "2.3")
-        last_updated:
-          type: integer
-          format: int64
-          description: POSIX timestamp at which the data was last updated
-        ttl:
-          type: integer
-          description: Seconds before the consumer should re-fetch this feed
-        data:
-          type: object

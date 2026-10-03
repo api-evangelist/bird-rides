@@ -52,77 +52,6 @@ paths:
                 $ref: '#/components/schemas/FreeBikeStatus'
 components:
   schemas:
-    VehicleTypes:
-      allOf:
-      - $ref: '#/components/schemas/GbfsEnvelope'
-      - type: object
-        properties:
-          data:
-            type: object
-            properties:
-              vehicle_types:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VehicleType'
-    GbfsEnvelope:
-      type: object
-      required:
-      - version
-      - data
-      - last_updated
-      - ttl
-      properties:
-        version:
-          type: string
-          description: GBFS spec version (e.g. "2.3")
-        last_updated:
-          type: integer
-          format: int64
-          description: POSIX timestamp at which the data was last updated
-        ttl:
-          type: integer
-          description: Seconds before the consumer should re-fetch this feed
-        data:
-          type: object
-    VehicleType:
-      type: object
-      required:
-      - vehicle_type_id
-      - form_factor
-      - propulsion_type
-      properties:
-        vehicle_type_id:
-          type: string
-        form_factor:
-          type: string
-          enum:
-          - scooter
-          - bicycle
-          - car
-          - moped
-          - other
-        propulsion_type:
-          type: string
-          enum:
-          - human
-          - electric_assist
-          - electric
-          - combustion
-          - other
-        max_range_meters:
-          type: number
-    FreeBikeStatus:
-      allOf:
-      - $ref: '#/components/schemas/GbfsEnvelope'
-      - type: object
-        properties:
-          data:
-            type: object
-            properties:
-              bikes:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Vehicle'
     Vehicle:
       type: object
       required:
@@ -150,3 +79,74 @@ components:
         last_reported:
           type: integer
           format: int64
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object
+    FreeBikeStatus:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              bikes:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+    VehicleType:
+      type: object
+      required:
+      - vehicle_type_id
+      - form_factor
+      - propulsion_type
+      properties:
+        vehicle_type_id:
+          type: string
+        form_factor:
+          type: string
+          enum:
+          - scooter
+          - bicycle
+          - car
+          - moped
+          - other
+        propulsion_type:
+          type: string
+          enum:
+          - human
+          - electric_assist
+          - electric
+          - combustion
+          - other
+        max_range_meters:
+          type: number
+    VehicleTypes:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              vehicle_types:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VehicleType'

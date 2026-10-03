@@ -52,24 +52,6 @@ paths:
                 $ref: '#/components/schemas/StationStatus'
 components:
   schemas:
-    Station:
-      type: object
-      required:
-      - station_id
-      - name
-      - lat
-      - lon
-      properties:
-        station_id:
-          type: string
-        name:
-          type: string
-        lat:
-          type: number
-        lon:
-          type: number
-        capacity:
-          type: integer
     GbfsEnvelope:
       type: object
       required:
@@ -90,6 +72,24 @@ components:
           description: Seconds before the consumer should re-fetch this feed
         data:
           type: object
+    Station:
+      type: object
+      required:
+      - station_id
+      - name
+      - lat
+      - lon
+      properties:
+        station_id:
+          type: string
+        name:
+          type: string
+        lat:
+          type: number
+        lon:
+          type: number
+        capacity:
+          type: integer
     StationStatus:
       allOf:
       - $ref: '#/components/schemas/GbfsEnvelope'
