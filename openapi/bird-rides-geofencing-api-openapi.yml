@@ -73,26 +73,6 @@ components:
                     type: boolean
                   maximum_speed_kph:
                     type: number
-    GeofencingZones:
-      allOf:
-      - $ref: '#/components/schemas/GbfsEnvelope'
-      - type: object
-        properties:
-          data:
-            type: object
-            properties:
-              geofencing_zones:
-                type: object
-                description: GeoJSON FeatureCollection of geofence polygons
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - FeatureCollection
-                  features:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/GeofencingFeature'
     GbfsEnvelope:
       type: object
       required:
@@ -113,3 +93,23 @@ components:
           description: Seconds before the consumer should re-fetch this feed
         data:
           type: object
+    GeofencingZones:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              geofencing_zones:
+                type: object
+                description: GeoJSON FeatureCollection of geofence polygons
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - FeatureCollection
+                  features:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GeofencingFeature'
