@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-25 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-25'
 aid: bird-rides
 name: Bird Pricing & Plans
 specification: API Commons Plans 0.1
@@ -59,3 +64,34 @@ sources:
   - https://www.bird.co/platform
   - https://www.bird.co/cities
   - https://mds.bird.co/gbfs/v2/public/los-angeles/system_pricing_plans.json
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Pay-as-You-Go Rides
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Bird Community Pricing
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Bird Platform — Fleet Operator
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Cities Partner Program
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
