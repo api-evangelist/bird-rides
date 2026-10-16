@@ -2,6 +2,13 @@
   "repo": "bird-rides",
   "feeds": [
     {
+      "source": "https://www.bird.co/blog",
+      "feed_url": "https://www.bird.co/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://www.bird.co/press",
       "feed_url": "https://www.bird.co/press",
       "title": "",
@@ -9,7 +16,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 10,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
