@@ -79,6 +79,18 @@ components:
                       type: boolean
                     is_returning:
                       type: boolean
+    StationInformation:
+      allOf:
+      - $ref: '#/components/schemas/GbfsEnvelope'
+      - type: object
+        properties:
+          data:
+            type: object
+            properties:
+              stations:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Station'
     Station:
       type: object
       required:
@@ -117,15 +129,3 @@ components:
           description: Seconds before the consumer should re-fetch this feed
         data:
           type: object
-    StationInformation:
-      allOf:
-      - $ref: '#/components/schemas/GbfsEnvelope'
-      - type: object
-        properties:
-          data:
-            type: object
-            properties:
-              stations:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Station'

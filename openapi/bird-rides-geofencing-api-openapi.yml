@@ -38,6 +38,26 @@ paths:
                 $ref: '#/components/schemas/GeofencingZones'
 components:
   schemas:
+    GbfsEnvelope:
+      type: object
+      required:
+      - version
+      - data
+      - last_updated
+      - ttl
+      properties:
+        version:
+          type: string
+          description: GBFS spec version (e.g. "2.3")
+        last_updated:
+          type: integer
+          format: int64
+          description: POSIX timestamp at which the data was last updated
+        ttl:
+          type: integer
+          description: Seconds before the consumer should re-fetch this feed
+        data:
+          type: object
     GeofencingFeature:
       type: object
       properties:
@@ -73,26 +93,6 @@ components:
                     type: boolean
                   maximum_speed_kph:
                     type: number
-    GbfsEnvelope:
-      type: object
-      required:
-      - version
-      - data
-      - last_updated
-      - ttl
-      properties:
-        version:
-          type: string
-          description: GBFS spec version (e.g. "2.3")
-        last_updated:
-          type: integer
-          format: int64
-          description: POSIX timestamp at which the data was last updated
-        ttl:
-          type: integer
-          description: Seconds before the consumer should re-fetch this feed
-        data:
-          type: object
     GeofencingZones:
       allOf:
       - $ref: '#/components/schemas/GbfsEnvelope'
