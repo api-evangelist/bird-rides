@@ -114,6 +114,92 @@ edges:
     sector: mobility
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Open Mobility Foundation MDS registered providers
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://raw.githubusercontent.com/openmobilityfoundation/mobility-data-specification/main/providers.csv
+  category: MDS provider registration
+  contract_reference:
+    register: Open Mobility Foundation MDS registered providers
+    standard: Mobility Data Specification (MDS)
+    spec_file: null
+    role: mds-provider
+    registrations:
+    - registered_name: Bird
+      mode: micromobility
+      provider_id: 2411d395-04f2-47c9-ab66-d09e9e3c3251
+      matched_domain: bird.co
+      matched_by: domain
+      mds_api_host: mds.bird.co
+      gbfs_api_host: mds.bird.co
+      evidence_url: https://github.com/openmobilityfoundation/mobility-data-specification/blob/main/providers.csv
+    signal_note: 'participation only: an OMF provider registration (provider_id issued); the OMF publishes no MDS
+      conformance certification'
+    detected_by: sweep-open-mobility-foundation-mds.py
+    detected: '2026-10-22'
+  detected_by: sweep-open-mobility-foundation-mds.py
+  first_seen: '2026-10-22'
+- partner_name: Open Mobility Foundation MDS registered providers (platform-hosted operators)
+  partner: null
+  partner_match: register
+  type: coverage
+  channel: standard-directory
+  relationship: system-coverage
+  direction: provider-built
+  evidence: https://raw.githubusercontent.com/openmobilityfoundation/mobility-data-specification/main/providers.csv
+  category: MDS platform hosting
+  contract_reference:
+    register: Open Mobility Foundation MDS registered providers
+    standard: Mobility Data Specification (MDS)
+    spec_file: null
+    role: mds-platform-host
+    operators:
+    - operator: SherpaLA
+      mode: micromobility
+      provider_id: 3c95765d-4da6-41c6-b61e-1954472ec6c9
+      mds_api_host: mds.bird.co
+      gbfs_api_host: mds.bird.co
+      operator_site: null
+    - operator: Baus
+      mode: micromobility
+      provider_id: 638ba503-4006-4c53-bf34-cd625cc03d61
+      mds_api_host: mds.bird.co
+      gbfs_api_host: mds.bird.co
+      operator_site: bausmoves.com
+    - operator: Circ
+      mode: micromobility
+      provider_id: 03d5d605-e5c9-45a1-a1dd-144aa8649525
+      mds_api_host: mds.bird.co
+      gbfs_api_host: null
+      operator_site: www.circ.com
+    - operator: Zisch
+      mode: micromobility
+      provider_id: fb62cfe6-757c-4e5b-a264-18b43b3fc40b
+      mds_api_host: mds.bird.co
+      gbfs_api_host: null
+      operator_site: www.e-zisch.ch
+    - operator: Seven Group
+      mode: micromobility
+      provider_id: 7fca7812-c718-48dd-b9f2-d1ae160f2ae4
+      mds_api_host: mds.bird.co
+      gbfs_api_host: null
+      operator_site: www.group-seven.ch
+    - operator: Scoot
+      mode: micromobility
+      provider_id: 07a25fe6-d0be-11e8-a8d5-f2801f1b9fd1
+      mds_api_host: mds.bird.co
+      gbfs_api_host: mds.bird.co
+      operator_site: scoot.co
+    signal_note: 'platform coverage: these registered operators'' MDS / GBFS feeds are served from this provider''s
+      host; credited to the platform only, never to the operators'
+    detected_by: sweep-open-mobility-foundation-mds.py
+    detected: '2026-10-22'
+  detected_by: sweep-open-mobility-foundation-mds.py
+  first_seen: '2026-10-22'
 generated: '2026-10-18'
 method: searched
 source:
@@ -130,3 +216,6 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- https://openmobilityfoundation.org
+- https://raw.githubusercontent.com/openmobilityfoundation/mobility-data-specification/main/agencies.csv
+- https://raw.githubusercontent.com/openmobilityfoundation/mobility-data-specification/main/providers.csv
